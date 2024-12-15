@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { userContext } from '../context/UserContext'
 import './home.css'
 
-const home = () => {
+const Home = () => {
 
   const loggedData = useContext(userContext)
   const [foodItem, setFoodItem] = useState([]);
@@ -12,6 +12,13 @@ const home = () => {
   const [oldFood, setOldFood] = useState(null)
   const [inputText,setInputText]= useState(undefined)
   const [trackFoodDetails,setTrackFoodDetails] = useState({})
+
+  
+
+
+
+  // const API_url = process.env.REACT_APP_API_URL || "http://localhost:8000";
+
 
   let [quantity,setQuantity] = useState(1)
 
@@ -44,6 +51,10 @@ const home = () => {
 
   //for getting all food items
   useEffect(()=>{
+
+      
+    console.log("API URL:", import.meta.env.REACT_APP_API_URL);
+
     fetch(`http://localhost:8000/foods`,{
       method:"GET",
       headers:{
@@ -283,4 +294,4 @@ const home = () => {
   )
 }
 
-export default home
+export default Home

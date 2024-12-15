@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require("mongoose")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+require('dotenv').config();
 
 const cors = require("cors")
 
@@ -20,7 +21,7 @@ app.use(express.json())
 
 // Configure CORS middleware
 app.use(cors({
-    origin: `${import.meta.env.FRONTEND_ORIGIN}`, // Allow this specific origin
+    origin: process.env.FRONTEND_ORIGIN, // Allow this specific origin
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
     credentials: true // If using cookies or authentication
@@ -37,6 +38,13 @@ mongoose.connect(process.env.MONGO_DB).then((res)=>{
 }).catch((err)=>{
     console.log(err)
 })
+
+// const user = {
+//     name : "giri",
+//     password: "giri",
+//     age:23,
+//     email:"giri@gmail.com"
+// }
 
 
 app.post("/register",(req,res)=>{
@@ -72,6 +80,9 @@ app.post("/register",(req,res)=>{
 app.post("/login",async (req,res)=>{
     const user = req.body
 
+    // userModel.find().then((d)=>{
+    //     console.log(d)
+    // }).catch()
     try{
         let userCred = await userModel.findOne({email:user.email})
         // console.log(userCred.id)
@@ -98,7 +109,15 @@ app.post("/login",async (req,res)=>{
         res.send({message:"some problem in login"})
     }
 })
-;
+
+// const foods = {
+//     name: "griled chicken",
+//     quantity: "150 grams",
+//     calories: 280,
+//     protein: 30,
+//     carbohydrates: 0,
+//     fats: 18,
+//   };
 
 app.get("/foods",verifyToken,async (req,res)=>{
 
