@@ -11,7 +11,7 @@ const List = () => {
 
   useEffect(() => {
     // console.log("token is ", loggedData.loggedUser.token);
-    fetch(`http://localhost:8000/track/${loggedData.loggedUser.id}/${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/track/${loggedData.loggedUser.id}/${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${loggedData.loggedUser.token}`,

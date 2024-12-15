@@ -30,7 +30,7 @@ const Register = () => {
 
         console.log(userDetails)
 
-        fetch("http://localhost:8000/register",{
+        fetch(`${import.meta.env.VITE_API_URL}/register`,{
         method:"post",
         body:JSON.stringify(userDetails),
         headers:{

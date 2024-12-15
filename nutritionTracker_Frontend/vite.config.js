@@ -11,7 +11,7 @@ export default defineConfig({
   server: {
       proxy: {
           '/track': {
-              target: 'http://localhost:8000',
+              target: `${import.meta.env.VITE_API_URL}`,
               changeOrigin: true,
               secure: false
           }

@@ -13,12 +13,6 @@ const Home = () => {
   const [inputText,setInputText]= useState(undefined)
   const [trackFoodDetails,setTrackFoodDetails] = useState({})
 
-  
-
-
-
-  // const API_url = process.env.REACT_APP_API_URL || "http://localhost:8000";
-
 
   let [quantity,setQuantity] = useState(1)
 
@@ -29,7 +23,7 @@ const Home = () => {
   function searchFood(event){
 
     if(event.target.value!==""){
-      fetch(`http://localhost:8000/foods/${event.target.value}`,{
+      fetch(`${import.meta.env.VITE_API_URL}/foods/${event.target.value}`,{
         method:"GET",
         headers:{
           "Authorization":`Bearer ${loggedData.loggedUser.token}`
@@ -51,11 +45,10 @@ const Home = () => {
 
   //for getting all food items
   useEffect(()=>{
-
       
-    console.log("API URL:", import.meta.env.REACT_APP_API_URL);
+    // console.log("API URL:", );
 
-    fetch(`http://localhost:8000/foods`,{
+    fetch(`${import.meta.env.VITE_API_URL}/foods`,{
       method:"GET",
       headers:{
         "Authorization":`Bearer ${loggedData.loggedUser.token}`
@@ -208,7 +201,7 @@ const Home = () => {
                         // console.log(food._id)
                         console.log(setTrackFoodDetails)
 
-                          fetch("http://localhost:8000/track",{
+                          fetch(`${import.meta.env.VITE_API_URL}/track`,{
                             method:"POST",
                             body: JSON.stringify(setTrackFoodDetails),
                             headers:{
