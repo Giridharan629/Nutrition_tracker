@@ -5,8 +5,10 @@ import dotenv from 'dotenv'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  define:{
-    'process.env.REACT_APP_API_URL':JSON.stringify(process.env.REACT_APP_API_URL)
+  define: {
+    'process.env': {
+      VITE_API_URL: process.env.VITE_API_URL || 'http://localhost:8000', // Fallback to localhost if undefined
+    },
   },
   server: {
       proxy: {
