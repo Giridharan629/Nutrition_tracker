@@ -46,7 +46,6 @@ const Home = () => {
   //for getting all food items
   useEffect(()=>{
       
-    // console.log("API URL:", );
 
     fetch(`${import.meta.env.VITE_API_URL}/foods`,{
       method:"GET",
